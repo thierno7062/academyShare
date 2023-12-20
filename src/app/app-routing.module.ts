@@ -11,6 +11,22 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'select',
+    loadChildren: () => import('./select/select.module').then( m => m.SelectPageModule)
+  },
+  {
+    path: 'checkbox',
+    loadChildren: () => import('./checkbox/checkbox.module').then( m => m.CheckboxPageModule)
+  },
+  {
+    path: 'gesture',
+    loadChildren: () => import('./gesture/gesture.module').then( m => m.GesturePageModule)
+  },
+  {
+    path: 'audio-record',
+    loadChildren: () => import('./pages/audio-record/audio-record.module').then( m => m.AudioRecordPageModule)
+  },
 ];
 
 @NgModule({

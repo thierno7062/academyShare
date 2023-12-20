@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>select</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item (click)="select.open()">
+    <ion-label>Select user</ion-label>
+    <app-searchable-select
+      title="Select users"
+      [data]="users"
+      itemTextField="name.first"
+      [multiple]="true"
+      #select
+    ></app-searchable-select>
+  </ion-item>
+</ion-content>

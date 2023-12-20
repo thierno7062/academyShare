@@ -1,20 +1,54 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title> Blank </ion-title>
+    <ion-buttons slot="end"><ion-button routerLink="/select" color="success"fill="solid">SELECT</ion-button></ion-buttons>
+    <ion-buttons slot="end"><ion-button routerLink="/checkbox" color="primary"fill="solid">CHECKBOX</ion-button></ion-buttons>
+    <ion-buttons slot="end"><ion-button routerLink="/gesture" color="secondary"fill="solid">GESTURE</ion-button></ion-buttons>
+    <ion-buttons slot="end"><ion-button routerLink="/audio-record" color="secondary"fill="solid">Audio</ion-button></ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-button (click)="basicShare()" expand="full">Basic Share </ion-button>
+  <ion-button (click)="shareImage()" expand="full">Share Image </ion-button>
+  <ion-button (click)="shareLocalFile()" expand="full">Share File </ion-button>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div id="main_div">
+    <!-- Title div -->
+    <div class="title">{{ title }}</div>
+    <!-- Container div -->
+    <div class="container">
+      <!-- Input field for base64 string -->
+      <input
+        type="text"
+        [(ngModel)]="base64String"
+        class="input-field"
+        placeholder="base64 string"
+      />
+      <!-- Convert button, disabled if base64 string is not valid -->
+      <button
+        (click)="convertToImage()"
+        [disabled]="!isValidString()"
+        class="convert-button"
+      >
+        Convert
+      </button>
+      <!-- Display image -->
+      <img [src]="imageUrl" /><br />
+      <!-- Download button for image, visible only if image is valid -->
+      <div>
+        <a
+          [href]="imageUrl"
+          *ngIf="isValidImage()"
+          [download]="'image.jpeg'"
+          class="download-button"
+          >Download</a
+        >
+      </div>
+      <ion-button (click)="shareImage()" expand="block" fill="clear" shape="round">
+        <ion-icon name="share-social-outline" style="font-weight: 500px bold;"></ion-icon>
+      </ion-button>
+    </div>
   </div>
 </ion-content>
